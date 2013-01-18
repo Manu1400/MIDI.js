@@ -1611,7 +1611,17 @@ if (typeof(MusicTheory) === "undefined") MusicTheory = {};
 	//// TEMPO
 	
 	root.tempoFromTap = function(that) {
-		function getName(v) {
+			for (var n = 0, name = ""; n < 250; n ++) {
+				if (tempo[n]) name = tempo[n];
+				if (v < n) return name;
+			}
+			return 'Prestissimo';
+		};
+		if (that.tap) {
+			var diff = (new Date()).getTime() - that.tap;
+			var c = 1 / (diff / 1000) * 60; //FIXME : divise par 0
+			Piano.tempo = c;
+			function getName(v) {
 			var tempo = { // wikipedia
 				200: 'Prestissimo',
 				168: 'Presto',
@@ -1625,16 +1635,6 @@ if (typeof(MusicTheory) === "undefined") MusicTheory = {};
 				40: 'Lento',
 				0: 'Larghissimo'
 			};
-			for (var n = 0, name = ""; n < 250; n ++) {
-				if (tempo[n]) name = tempo[n];
-				if (v < n) return name;
-			}
-			return 'Prestissimo';
-		};
-		if (that.tap) {
-			var diff = (new Date()).getTime() - that.tap;
-			var c = 1 / (diff / 1000) * 60; //FIXME : divise par 0
-			Piano.tempo = c;
 			console.log(getName(c), c, diff)
 			document.getElementById("taptap").value = (c>>0) +"bmp " + getName(c);
 		}
