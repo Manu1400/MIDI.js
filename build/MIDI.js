@@ -1659,7 +1659,7 @@ if (typeof(MusicTheory) === "undefined") MusicTheory = {};
 			return z;
 		};
 		var test = {};
-		var values = "0 3".split(' ');
+		var values = ["0", "3"];
 		var chords = rewrite(Piano.chords);
 		for (var key in chords) {
 			for (var n = 0, length = values.length; n < length; n ++) {
@@ -4386,7 +4386,7 @@ root.longpress = function(conf) {
 	// Tracking the events.
 	conf.onPointerDown = function (event) {
 		if (root.pointerStart(event, self, conf)) {
-			timestamp = (new Date).getTime();
+			timestamp = new Date.getTime();
 			// Initialize event listeners.
 			Event.add(conf.doc, "mousemove", conf.onPointerMove).listener(event);
 			Event.add(conf.doc, "mouseup", conf.onPointerUp);
