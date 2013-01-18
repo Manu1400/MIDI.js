@@ -545,9 +545,7 @@ MIDI.loadPlugin = function(conf) {
 		if (typeof(type) === 'undefined') {
 			if (plugins[window.location.hash]) {
 				type = window.location.hash.substr(1);
-			} else { //
-				type = "";
-			}
+			} 
 		}
 		if (type === "") {
 			if (window.webkitAudioContext) { // Chrome
@@ -1040,9 +1038,9 @@ if (window.AudioContext || window.webkitAudioContext) (function () {
 		source.buffer = audioBuffers[instrument + "" + note];
 		source.connect(ctx.destination);
 		///
-		var gainNode = ctx.createGainNode();
 		var value = -0.5 + (velocity / 100) * 2;
 		var minus = (1 - masterVolume) * 2;
+		var gainNode = ctx.createGainNode();
 		gainNode.connect(ctx.destination);
 		gainNode.gain.value = Math.max(-1, value - minus);
 		source.connect(gainNode);
@@ -1234,10 +1232,9 @@ if (window.Audio) (function () {
 		note = id + "" + noteReverse[note];
 		if (!notes[note]) return;
 		if (delay) {
-			var interval = window.setTimeout(function() { 
+			 return window.setTimeout(function() { 
 				notes[note].play({ volume: velocity * 2 });
 			}, delay * 1000);
-			return interval;
 		} else {
 			notes[note].play({ volume: velocity * 2 });
 		}
