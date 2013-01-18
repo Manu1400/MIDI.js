@@ -463,8 +463,8 @@ if (typeof(MIDI) === "undefined") var MIDI = {};
 
 var supports = {};	
 var canPlayThrough = function (src) {
-	var audio = new Audio();
 	var mime = src.split(";")[0];
+	var audio = new Audio();
 	audio.id = "audio";
 	audio.setAttribute("preload", "auto");
 	audio.setAttribute("audiobuffer", true);
@@ -1123,8 +1123,8 @@ if (window.Audio) (function () {
 	var channel_nid = -1; // current channel
 	var channels = []; // the audio channels
 	var notes = {}; // the piano keys
-	for (var nid = 0; nid < 12; nid++) {
-		channels[nid] = new Audio();
+	for (var nid = 0, var audiotmp = new Audio(); nid < 12; nid++) {
+		channels[nid] = audiotmp;
 	}
 
 	var playChannel = function (channel, note) {
