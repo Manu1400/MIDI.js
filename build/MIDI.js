@@ -1633,7 +1633,7 @@ if (typeof(MusicTheory) === "undefined") MusicTheory = {};
 		};
 		if (that.tap) {
 			var diff = (new Date()).getTime() - that.tap;
-			var c = 1 / (diff / 1000) * 60;
+			var c = 1 / (diff / 1000) * 60; //FIXME : divise par 0
 			Piano.tempo = c;
 			console.log(getName(c), c, diff)
 			document.getElementById("taptap").value = (c>>0) +"bmp " + getName(c);
